@@ -2,29 +2,15 @@ use color_eyre::eyre::{Context, Result};
 use ratatui::{
   crossterm::event::{self, Event, KeyEventKind},
   prelude::*,
-  widgets::{
-    block::{Position, Title},
-    Block, Paragraph, Widget,
-  },
+  widgets::{Block, Borders, Paragraph, Widget, Wrap},
   Frame,
 };
-use symbols::border;
 
 use crate::tui::Tui;
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct App {
-  current_keyspace: String,
   exit: bool,
-}
-
-impl Default for App {
-  fn default() -> Self {
-    Self {
-      current_keyspace: "system".to_string(),
-      exit: false,
-    }
-  }
 }
 
 impl App {
@@ -53,6 +39,7 @@ impl App {
   }
 
   fn handle_key_event(&mut self, key_event: event::KeyEvent) -> Result<()> {
+    #[allow(clippy::single_match)]
     match key_event.code {
       event::KeyCode::Char('q') => self.exit(),
       _ => {}
@@ -63,6 +50,37 @@ impl App {
   fn exit(&mut self) {
     self.exit = true;
   }
+
+  fn sidebar(area: Rect, buf: &mut Buffer) {
+    let layout = Layout::default()
+      .direction(Direction::Vertical)
+      .constraints(vec![Constraint::Percentage(10), Constraint::Percentage(90)])
+      .split(area);
+
+    Paragraph::new("Select your keyspace")
+      .block(Block::new().borders(Borders::ALL))
+      .render(layout[0], buf);
+
+    Paragraph::new("List of keyspaces will be here")
+      .wrap(Wrap { trim: false })
+      .block(Block::new().borders(Borders::ALL))
+      .render(layout[1], buf);
+  }
+
+  fn content(area: Rect, buf: &mut Buffer) {
+    let layout = Layout::default()
+      .direction(Direction::Vertical)
+      .constraints(vec![Constraint::Percentage(10), Constraint::Percentage(90)])
+      .split(area);
+
+    Paragraph::new("ScyllaSH 0.0.1")
+      .block(Block::new().borders(Borders::ALL))
+      .render(layout[0], buf);
+
+    Paragraph::new("REPL will be here")
+      .block(Block::new().borders(Borders::ALL))
+      .render(layout[1], buf);
+  }
 }
 
 impl Widget for &App {
@@ -70,25 +88,10 @@ impl Widget for &App {
   where
     Self: Sized,
   {
-    let title = Title::from(" Scyllash ".bold());
-    let instructions = Title::from(Line::from(vec![" Quit ".into(), "<Q> ".blue().bold()]));
-    let block = Block::bordered()
-      .title(title.alignment(Alignment::Center))
-      .title(
-        instructions
-          .alignment(Alignment::Center)
-          .position(Position::Bottom),
-      )
-      .border_set(border::THICK);
+    let [sidebar_area, content_area] =
+      Layout::horizontal([Constraint::Length(30), Constraint::Fill(1)]).areas(area);
 
-    let keyspace_text = Text::from(vec![Line::from(vec![
-      "Current keyspace: ".into(),
-      self.current_keyspace.clone().bold(),
-    ])]);
-
-    Paragraph::new(keyspace_text)
-      .centered()
-      .block(block)
-      .render(area, buf);
+    App::sidebar(sidebar_area, buf);
+    App::content(content_area, buf);
   }
 }
