@@ -4,5 +4,3 @@ port = 9042
 username = "scylla"
 password = ""
 timeout = 10
-
-
