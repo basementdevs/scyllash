@@ -1,5 +1,7 @@
 <h1 align="center"> ScyllaSH </h1>
 
+<img src="./.github/assets/logo.png" width=150 align="left" />
+
 > A Better CQLsh REPL Built in Rust
 
 **ScyllaSH** is a powerful and user-friendly REPL (Read-Eval-Print Loop) for ScyllaDB and Cassandra, designed to be a superior alternative to the default `cqlsh`. Built with Rust and leveraging the `ratatui` library for an enhanced terminal interface, ScyllaSH offers a range of features that make working with CQL (Cassandra Query Language) more efficient and enjoyable.
