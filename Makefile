@@ -25,9 +25,13 @@ check: format lint ## Formats the codebase and then lints it.
 build: ## Compiles the project.
 	@$(CARGO) build
 
+.PHONY: debug
+debug: ## Compiles and runs the project.
+	@$(CARGO) run
+	
 .PHONY: run
 run: ## Compiles and runs the project.
-	@$(CARGO) run
+	@$(CARGO) run --release
 
 .PHONY: test
 test: ## Runs the test suite.
