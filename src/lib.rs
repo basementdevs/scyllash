@@ -1,3 +1,3 @@
 pub mod app;
-pub mod tui;
 pub mod args;
+pub mod tui;
