@@ -10,6 +10,6 @@ color-eyre = "0.6.3"
 ratatui = { version = "0.28.1", features = ["all-widgets"] }
 scylla = "0.13.2"
 serde = { version = "1.0.208", features = ["derive"] }
-tokio = { version = "1.39.3", features = ["full"] }
+tokio = { version = "1.40.0", features = ["full"] }
 toml = "0.8.19"
 uuid = { version = "1.10.0", features = ["v1", "v4"] }
