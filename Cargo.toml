@@ -7,7 +7,7 @@ edition = "2021"
 chrono = "0.4.38"
 clap = { version = "4.5.16", features = ["derive"] }
 color-eyre = "0.6.3"
-ratatui = { version = "0.28.0", features = ["all-widgets"] }
+ratatui = { version = "0.28.1", features = ["all-widgets"] }
 scylla = "0.13.2"
 serde = { version = "1.0.208", features = ["derive"] }
 tokio = { version = "1.39.3", features = ["full"] }
