@@ -41,7 +41,7 @@ jobs:
           target: x86_64-unknown-linux-gnu
           components: clippy, rustfmt
       - name: Run Rustfmt
-        uses: actions-rust-lang/rustfmt@2d1d4e9f72379428552fa1def0b898733fb8472d # v1.1.0
+        uses: actions-rust-lang/rustfmt@559aa3035a47390ba96088dffa783b5d26da9326 # v1.1.1
       - name: Run Clippy
         uses: clechasseur/rs-clippy-check@a2a93bdcf05de7909aabd62eca762179ad3dbe50 # v3.0.5
         with:
