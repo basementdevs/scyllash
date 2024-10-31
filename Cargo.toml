@@ -12,4 +12,4 @@ scylla = "0.13.2"
 serde = { version = "1.0.214", features = ["derive"] }
 tokio = { version = "1.40.0", features = ["full"] }
 toml = "0.8.19"
-uuid = { version = "1.10.0", features = ["v1", "v4"] }
+uuid = { version = "1.11.0", features = ["v1", "v4"] }
