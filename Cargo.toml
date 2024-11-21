@@ -8,7 +8,7 @@ chrono = "0.4.38"
 clap = { version = "4.5.20", features = ["derive"] }
 color-eyre = "0.6.3"
 ratatui = { version = "0.29.0", features = ["all-widgets"] }
-scylla = "0.14.0"
+scylla = "0.15.0"
 serde = { version = "1.0.215", features = ["derive"] }
 tokio = { version = "1.41.1", features = ["full"] }
 toml = "0.8.19"
