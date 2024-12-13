@@ -1,9 +1,9 @@
 use color_eyre::eyre::{Context, Result};
 use ratatui::{
+  Frame,
   crossterm::event::{self, Event, KeyEventKind},
   prelude::*,
   widgets::{Block, Borders, Paragraph, Widget, Wrap},
-  Frame,
 };
 
 use crate::tui::Tui;
