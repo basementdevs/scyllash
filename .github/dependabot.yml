@@ -1,11 +1,33 @@
 version: 2
 
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "weekly"
-  - package-ecosystem: "cargo"
-    directory: "/"
+      interval: 'weekly'
+    pull-request-branch-name:
+      separator: _
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - 'version-update:semver-major'
+
+  - package-ecosystem: 'cargo'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
+    pull-request-branch-name:
+      separator: _
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - 'version-update:semver-major'
+    groups:
+      prod:
+        dependency-type: production
+        patterns:
+          - '*'
+      dev:
+        dependency-type: development
+        patterns:
+          - '*'
