@@ -13,6 +13,7 @@ updates:
           - 'version-update:semver-major'
 
   - package-ecosystem: 'cargo'
+    open-pull-requests-limit: 0
     directory: '/'
     schedule:
       interval: 'weekly'
